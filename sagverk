@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Lärande Spel</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .background-image {
+        background-image: url('https://res.cloudinary.com/du6t7jnzq/image/upload/v1715371686/s%C3%A5gverk1_h8mr5p.webp');
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .clickable-image {
+        position: absolute;
+        right: 20%;
+        top: 30%;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        width: 100px;
+    }
+    .text-box {
+        position: absolute;
+        width: 120px; /* justerad liten bredd initialt */
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        overflow: hidden; /* Håll texten gömd */
+        text-align: center;
+        font-size: 16px; /* Anpassa textstorlek efter behov */
+    }
+    .text-box.expanded {
+        width: 300px; /* Större bredd när expanderad */
+        height: auto;
+        font-size: 14px; /* Större text när expanderad */
+    }
+    .text-box.door {
+        left: 15%;
+        bottom: 35%;
+    }
+    .text-box.wood {
+        right: 10%;
+        bottom: 20%;
+    }
+</style>
+</head>
+<body>
+<div class="background-image">
+    <img src="https://res.cloudinary.com/du6t7jnzq/image/upload/v1715371679/e3fc1dfa-d2b0-475c-bf5a-59f4bf656896_fizrak.webp" alt="Expandable Image" class="clickable-image" onclick="expandImage(this)">
+    <div class="text-box door" onclick="toggleText(this, event)">Pelles plankor</div>
+    <div class="text-box wood" onclick="toggleText(this, event)">Sågverkets plankor</div>
+</div>
+
+<script>
+function expandImage(img) {
+    var isLarge = img.style.width === '300px';
+    img.style.width = isLarge ? '100px' : '300px';
+}
+
+function toggleText(box, event) {
+    box.classList.toggle('expanded');
+    if (box.classList.contains('expanded')) {
+        // Anpassa den här texten till varje textrutas specifika innehåll
+        if (box.classList.contains('door')) {
+            box.innerHTML = "De plankor Pelle har, har dessa tal. Börja med att sortera 
+plankorna i ordningsföljd och se om ni kan se något mönster.<br>
+
+<li>På en planka står det 8
+<li>På en planka står det 0
+<li>På en planka står det 1
+<li>På en planka står det 89
+<li>På en planka står det 5
+<li>På en planka står det 2
+<li>På en planka står det 13
+<li>Det står 1 på en planka till
+<li>På en planka står det 34";
+        } else if (box.classList.contains('wood')) {
+            box.innerHTML = "I sågverket finns det plankor med följande tal, vilka plankor behöver ni?<br>
+
+<li>På några plankor står det 3
+<li>På några plankor står det 4
+<li>På några plankor står det 32
+<li>På några plankor står det  17
+<li>På några plankor står det  85
+<li>På några plankor står det  9
+<li>På några plankor står det  25
+<li>På några plankor står det  29
+<li>På några plankor står det  14
+<li>På några plankor står det  55
+<li>På några plankor står det  58
+<li>På några plankor står det  21";
+        }
+    } else {
+        // Återställ etiketten baserat på klass
+        if (box.classList.contains('door')) {
+            box.innerHTML = "Pelles plankor";
+        } else if (box.classList.contains('wood')) {
+            box.innerHTML = "Sågverkets plankor";
+        }
+    }
+}
+</script>
+</body>
+</html>
+
